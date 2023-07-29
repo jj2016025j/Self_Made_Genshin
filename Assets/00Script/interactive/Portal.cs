@@ -1,63 +1,44 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// æ§åˆ¶å‚³é€é–€çš„ç›¸é—œé‚è¼¯
+// ±±¨î¶Ç°eªùªº¬ÛÃöÅŞ¿è
 public class Portal : MonoBehaviour
 {
-    public GameManager gameManager;
-    public PortalScene destinationScene; // ç›®æ¨™å ´æ™¯
+    public PortalScene destinationScene; // ¥Ø¼Ğ³õ´º
 
-    private bool playerInRange; // ç©å®¶æ˜¯å¦åœ¨å‚³é€é–€ç¯„åœå…§
+    private bool playerInRange; // ª±®a¬O§_¦b¶Ç°eªù½d³ò¤º
 
-    private void Start()
-    {
-        gameManager = FindObjectOfType<GameManager>();
-
-        if (gameManager == null)
-        {
-            GameObject gameManagerObject = new GameObject("GameManager");
-            gameManager = gameManagerObject.AddComponent<GameManager>();
-            Debug.Log("åˆ›å»ºäº†ä¸€ä¸ªæ–°çš„ GameManager å¯¹è±¡");
-        }
-        else
-        {
-            Debug.Log("å·²æ‰¾åˆ° GameManager å¯¹è±¡");
-        }    }
-
-    //ç©å®¶é€²å…¥å‚³é€é–€ç¯„åœ
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            Debug.Log("ç©å®¶é€²å…¥"+ destinationScene.ToString()+"å‚³é€é–€ç¯„åœã€‚");
-            Debug.Log("æŒ‰ä¸‹Féµå‚³é€è‡³"+ destinationScene.ToString());
+            Debug.Log("ª±®a¶i¤J"+ destinationScene.ToString()+"¶Ç°eªù½d³ò¡C");
+            Debug.Log("«ö¤UFÁä¶Ç°e¦Ü"+ destinationScene.ToString());
         }
     }
 
-    //ç©å®¶é›¢é–‹å‚³é€é–€ç¯„åœ
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            Debug.Log("ç©å®¶é›¢é–‹å‚³é€é–€ç¯„åœã€‚");
+            Debug.Log("ª±®aÂ÷¶}¶Ç°eªù½d³ò¡C");
         }
     }
 
-    //åµæ¸¬ç©å®¶å‚³é€åŠŸèƒ½
     private void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.F))
         {
-            if (gameManager == null)
+            if (GameManager.Instance == null)
             {
                 Debug.Log("GameManager.Instance is null");
                 return;
             }
-            Debug.Log("æŒ‰ä¸‹Féµï¼Œæ­£åœ¨å‚³é€ç©å®¶è‡³" + destinationScene.ToString() + "...");
-            gameManager.TeleportPlayer(destinationScene);
+            Debug.Log("«ö¤UFÁä¡A¥¿¦b¶Ç°eª±®a¦Ü" + destinationScene.ToString() + "...");
+            GameManager.Instance.TeleportPlayer(destinationScene);
         }
     }
 }

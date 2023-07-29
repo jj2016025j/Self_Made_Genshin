@@ -2,20 +2,19 @@ using UnityEngine;
 
 public partial class PlayerManager : MonoBehaviour
 {   
-    /*
     public PlayerControllerUIManager PlayerUIManager;
 
     public PlayerInfomationUIManager PlayerInfomationUIManager;
 
     public PCControl PlayerControll;
 
-    public RoleData Role;
+    public Role Role;
 
     public void Restore()
     {
         Role.Restore();
     }
-
+    /*
     public void ChaseSkill()
     {
         Role.ChaseSkill();
@@ -39,6 +38,6 @@ public partial class PlayerManager : MonoBehaviour
     public void CloseSkill()
     {
         Role.CloseSkill();
-    }
-    */
+    }*/
+
 }

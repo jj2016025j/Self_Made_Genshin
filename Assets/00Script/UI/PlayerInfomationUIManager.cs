@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+//跟隨角色血量顯示
 public class PlayerInfomationUIManager : MonoBehaviour
 {
     public UIManager UIManager;

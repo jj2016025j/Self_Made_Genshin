@@ -15,7 +15,7 @@ namespace Assets._3DMultiPlayerGame.Global.UI
 
         public TextMeshProUGUI UnitNameWorldSpace;
 
-        public ObjectData Object;
+        public TheObject Object;
 
         public void Update()
         {

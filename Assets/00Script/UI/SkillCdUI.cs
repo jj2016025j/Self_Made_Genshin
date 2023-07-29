@@ -7,6 +7,8 @@ using UnityEngine.SocialPlatforms;
 //還沒拉進去
 public class SkillCdUI : MonoBehaviour
 {
+    public PlayerControllerUIManager PlayerControllerUIManager;
+
     public Image Image;
     public TextMeshProUGUI time;
 

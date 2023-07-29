@@ -18,6 +18,7 @@ public class UIManager : Singleton<UIManager>
     [Header("UI")]
     public MapUIManager MapUIManager;
     public BagUIManager BagUIManager;
+    public PlayerControllerUIManager PlayerUIManager;
     public SettingUIManager SettingUIManager;
     public PlayerInfomationUIManager PlayerInfomationUIManager;
 

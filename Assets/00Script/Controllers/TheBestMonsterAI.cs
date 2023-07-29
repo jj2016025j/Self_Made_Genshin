@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TheBestMonsterAI : MonoBehaviour
+public class thebestmonsterai : MonoBehaviour
 {
     //  https://www.twblogs.net/a/5b8b21122b717718832d8185
     //解釋enum https://dotblogs.com.tw/h091237557/2014/05/19/145177
-    public GameObject playerUnit;          //獲取玩家單位
+    public UnityEngine.GameObject playerUnit;          //獲取玩家單位
     //private Animator thisAnimator;          //自身動畫組件
     public Vector3 initialPosition;            //初始位置
 
@@ -25,12 +25,11 @@ public class TheBestMonsterAI : MonoBehaviour
     {
         ATTACK,//攻擊
         STAND,      //原地呼吸
-        CHECK,      //原地觀察
+        CHECK,       //原地觀察
         WALK,       //移動
         WARN,       //盯着玩家
         CHASE,      //追擊玩家
-        RETURN,     //超出追擊範圍後返回
-        DEAD        //死亡
+        RETURN      //超出追擊範圍後返回
     }
     public MonsterState currentState = MonsterState.STAND;          //默認狀態爲原地呼吸
 
@@ -45,27 +44,9 @@ public class TheBestMonsterAI : MonoBehaviour
     public bool is_Warned = false;
     public bool is_Running = false;
 
-    //初始化
-    //保存初始位置信息
-    //檢查並修正怪物設置
-    //隨機一個待機動作
     void Start()
     {
-        initialPosition = transform.position; // Sets initial position to the current position of this GameObject
-
-        wanderRadius = 10.0f; // Arbitrary value, adjust as needed
-        alertRadius = 15.0f; // Arbitrary value, adjust as needed
-        defendRadius = 20.0f; // Arbitrary value, adjust as needed
-        chaseRadius = 30.0f; // Arbitrary value, adjust as needed
-
-        attackRange = 5.0f; // Arbitrary value, adjust as needed
-        walkSpeed = 2.0f; // Arbitrary value, adjust as needed
-        runSpeed = 4.0f; // Arbitrary value, adjust as needed
-        turnSpeed = 0.1f; // Suggested value was 0.1f
-
-        actRestTme = 10;
-
-        playerUnit = GameObject.FindGameObjectWithTag("Monster");
+        playerUnit = UnityEngine.GameObject.FindGameObjectWithTag("Player");
         //thisAnimator = GetComponent<Animator>();
 
         //保存初始位置信息
@@ -83,14 +64,35 @@ public class TheBestMonsterAI : MonoBehaviour
         RandomAction();
     }
 
-    //更新行為
-    void Update()
+    /// <summary>
+    /// 根據權重隨機待機指令
+    /// </summary>
+    void RandomAction()
     {
-        BehaviourSwitch();
+        //更新行動時間
+        lastActTime = Time.time;
+        //根據權重隨機
+        float number = Random.Range(0, actionWeight[0] + actionWeight[1] + actionWeight[2]);
+        if (number <= actionWeight[0])
+        {
+            currentState = MonsterState.STAND;
+            //thisAnimator.SetTrigger("Stand");
+        }
+        else if (actionWeight[0] < number && number <= actionWeight[0] + actionWeight[1])
+        {
+            currentState = MonsterState.CHECK;
+            //thisAnimator.SetTrigger("Check");
+        }
+        if (actionWeight[0] + actionWeight[1] < number && number <= actionWeight[0] + actionWeight[1] + actionWeight[2])
+        {
+            currentState = MonsterState.WALK;
+            //隨機一個朝向
+            targetRotation = Quaternion.Euler(0, Random.Range(1, 5) * 90, 0);
+            //thisAnimator.SetTrigger("Walk");
+        }
     }
 
-    //行為switch
-    void BehaviourSwitch()
+    void Update()
     {
         switch (currentState)
         {
@@ -103,7 +105,7 @@ public class TheBestMonsterAI : MonoBehaviour
                 EnemyDistanceCheck();
                 break; 
             //待機狀態，等待actRestTme後重新隨機指令
-            case MonsterState.STAND://Idle
+            case MonsterState.STAND:
                 if (Time.time - lastActTime > actRestTme)
                 {
                     RandomAction();         //隨機切換指令
@@ -123,7 +125,7 @@ public class TheBestMonsterAI : MonoBehaviour
                 break;
 
             //遊走，根據狀態隨機時生成的目標位置修改朝向，並向前移動
-            case MonsterState.WALK://Patrol
+            case MonsterState.WALK:
                 transform.Translate(Vector3.forward * Time.deltaTime * walkSpeed);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed);
 
@@ -174,47 +176,11 @@ public class TheBestMonsterAI : MonoBehaviour
                 //該狀態下的檢測指令
                 ReturnCheck();
                 break;
-
-            //返回狀態，超出追擊範圍後返回出生位置
-            case MonsterState.DEAD:
-                //UNDO 死亡後執行動作
-                //該狀態下的檢測指令
-                ReturnCheck();
-                break;
-        }
-
-    }
-
-    /// <summary>
-    /// 根據權重隨機待機指令
-    /// </summary>
-    void RandomAction()
-    {
-        //更新行動時間
-        lastActTime = Time.time;
-        //根據權重隨機
-        float number = Random.Range(0, actionWeight[0] + actionWeight[1] + actionWeight[2]);
-        if (number <= actionWeight[0])
-        {
-            currentState = MonsterState.STAND;
-            //thisAnimator.SetTrigger("Stand");
-        }
-        else if (actionWeight[0] < number && number <= actionWeight[0] + actionWeight[1])
-        {
-            currentState = MonsterState.CHECK;
-            //thisAnimator.SetTrigger("Check");
-        }
-        if (actionWeight[0] + actionWeight[1] < number && number <= actionWeight[0] + actionWeight[1] + actionWeight[2])
-        {
-            currentState = MonsterState.WALK;
-            //隨機一個朝向
-            targetRotation = Quaternion.Euler(0, Random.Range(1, 5) * 90, 0);
-            //thisAnimator.SetTrigger("Walk");
         }
     }
 
     /// <summary>
-    /// 原地呼吸、觀察狀態的目標距離檢測
+    /// 原地呼吸、觀察狀態的檢測
     /// </summary>
     void EnemyDistanceCheck()
     {

@@ -1,26 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable] // 使用這個可以使你在Unity編輯器中看到這個類別的資料
-public partial class PlayerManager
+public class RoleChoose : MonoBehaviour
 {
-    public string playerName;
+    /*PlayerManager player;
+    public void ChooseRole()
+    {
+        switch (player.role)
+        {
+            case PlayerManager.Role.Tank:
+                break;
+        }
+
+}
+public string name;
     public int health;
     public int attack;
     public int recovery;
-
-    public PlayerManager(string _name, int _health, int _attack, int _recovery)
+    public Role role;
+    public enum Role
     {
-        playerName = _name;
-        health = _health;
-        attack = _attack;
-        recovery = _recovery;
+        Tank,
+        Warrior,
+        Assassin,
+        Archer,
+        Mage
     }
-}
-
-public class RoleDataBase : MonoBehaviour
-{
-    // 在遊戲開始時初始化玩家列表
-    public static PlayerManager[] players = new PlayerManager[]
+    
+         public static PlayerManager[] players = new PlayerManager[]
     {
         new PlayerManager("Tank",100, 10, 3),
         new PlayerManager("Warrior",90, 12, 2),
@@ -29,18 +37,55 @@ public class RoleDataBase : MonoBehaviour
         new PlayerManager("Mage",70, 12, 1),
     };
 
-    private void Start() // 遊戲開始時被呼叫
-    {
-        // 獲取玩家選擇的角色索引，預設為0 (坦克)
-        int selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer", 0);
-
-        // 使用選擇的索引從玩家列表中獲取角色資訊
-        PlayerManager player = players[selectedPlayer];
-
-        // 在控制台列印角色資訊
+             int selectedPlayer = PlayerPrefs.GetInt("SelectedPlayer", 0);
+        player = PlayerData.players[selectedPlayer];
         Debug.Log("Player: " + player.name);
         Debug.Log("Health: " + player.health);
         Debug.Log("Attack: " + player.attack);
-        Debug.Log("Recovery: " + player.recovery);
+        Debug.Log("Exp: " + player.recovery);
+
+
+    void ChooseRole()
+    {
+        switch (chooseRole)
+        {
+            case "Tank":
+                break;
+            case "Warrior":
+                break;
+            case "Assassin":
+                break;
+            case "Archer":
+                break;
+            case "Mage":
+                break;
+            default:
+                break;
+        }
+        if (PlayerUI.transform.GetChild(0).GetChild(0).GetComponent<Text>() == true)
+        {
+            PlayerUI.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = playerManager.name;
+            PlayerUI.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = playerManager.health.ToString();
+            PlayerUI.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = playerManager.attack.ToString();
+            PlayerUI.transform.GetChild(6).GetChild(0).GetComponent<Text>().text = playerManager.recovery.ToString();
+        }
     }
+    
+         //是否選擇角色
+    public bool HaveRole = false;
+    //選擇角色
+    public GameObject ChooseRoleUI;
+    public string chooseRole;
+
+     
+         //是否開啟角色選擇選單
+    void jougeUI(bool HaveRole)
+    {
+        ChooseRoleUI.SetActive(HaveRole);
+    }
+
+     
+     
+     
+     */
 }

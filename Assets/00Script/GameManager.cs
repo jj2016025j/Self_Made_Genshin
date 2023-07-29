@@ -4,41 +4,44 @@ using System.Collections.Generic;
 using UnityEditor;
 #endif
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 //場景種類
 public enum PortalScene
 {
     Home,
     MainWorld,
-    Wilderness,
-    SampleScene
+    Wilderness
 }
 
+//當前遊戲狀態
+public enum GameState
+{
+    waitingToEnterTheGame,
+    SelectCharacter,
+    loadGame
+}
 
 // 遊戲管理器
 // 控制遊戲進程
 // 場景轉換
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public UIManager uiManager;
-    public PlayerManager playerManager;
-    public SceneManager sceneManager;
-    public ConnectionManager connectionManager;
+    public UIManager UIManager;
+    public PlayerManager PlayerManager;
+    public SceneManager SceneManager;
+    public ConnectionManager ConnectionManager;
 
-    //當前遊戲狀態
-    public enum GameState
-    {
-        loadGame,
-        waitingToEnterTheGame,
-        SelectCharacter,
-    }
+    public GameObject characterPrefab;  // 角色的預置物
+    public Transform spawnPoint;        // 角色生成點的位置
+
 
     public GameState State;
+    public bool FirstGame;//是否是第一次遊戲
 
     //判斷是否開始遊戲
-    public void Awake()
+    public override void Awake()
     {
+        base.Awake();
         if (State == GameState.loadGame)
         {
             Debug.Log("遊戲載入完畢，開始遊戲");
@@ -51,22 +54,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //初始化
-    void Start()
-    {
-        // 找到並自動賦值
-        uiManager = GameObject.FindObjectOfType<UIManager>();
-        playerManager = GameObject.FindObjectOfType<PlayerManager>();
-        sceneManager = GameObject.FindObjectOfType<SceneManager>();
-        connectionManager = GameObject.FindObjectOfType<ConnectionManager>();
-
-        // 確保找到了這些腳本
-        Debug.Assert(uiManager != null, "未找到 UIManager 腳本");
-        Debug.Assert(playerManager != null, "未找到 PlayerManager 腳本");
-        Debug.Assert(sceneManager != null, "未找到 SceneManager 腳本");
-        Debug.Assert(connectionManager != null, "未找到 ConnectionManager 腳本");
-    }    
-    
     //偵測時間縮放切換
     private void Update()
     {
@@ -81,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         Debug.Log("時間縮放：0");
-        //UNDO UIManager.IntoTheGame();
+        UIManager.IntoTheGame();
     }
 
     // 遊戲開始
@@ -89,7 +76,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         Debug.Log("時間縮放：1");
-        //UNDO UIManager.StartGame();
+        UIManager.StartGame();
     }
 
     // 時間縮放切換
@@ -137,5 +124,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("嘗試載入的場景不存在：" + destinationSceneName);
         }
+    }
+
+    //生成玩家角色
+    public void SpawnCharacter()
+    {
+        Instantiate<GameObject>(characterPrefab, spawnPoint.position, spawnPoint.rotation);
+        Debug.Log("生成角色");
+
+        // 在這裡可以對生成的角色進行進一步的設定和初始化
     }
 }
