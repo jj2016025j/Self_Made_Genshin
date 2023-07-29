@@ -1,81 +1,43 @@
 using UnityEngine;
 
-public partial class PlayerManager : Organism
+public partial class PlayerManager : MonoBehaviour
 {   
-    public PlayerManager() { }
+    public PlayerControllerUIManager PlayerUIManager;
 
-    public PlayerUIManager PlayerUIManager;
-    
-    public override void Start()
+    public PlayerInfomationUIManager PlayerInfomationUIManager;
+
+    public PCControll PlayerControll;
+
+    public Role Role;
+
+    public void Restore()
     {
-        //血量
-        maxHealth = 100;
-        currentMaxHealth = 100;
-        currentHealth = 100;
-        //回復
-        baseHealthRestore = 1;
-        currentHealthRestore = 1;
-        //防禦
-        baseDefense = 10;
-        currentDefense = 10;
-        deadTime = 15;
-        currentDeadTime = 0;
-
-        //攻擊
-        baseDamage = 10;
-        currentDamage = 10;
-        //其他
-        attackRange = 10;
-        criticalMultiplier = 50;//爆擊加成
-        criticalChance = 10;//爆擊機率
-
-        variable = 1;//Balance
+        Role.Restore();
     }
 
-    public override void Update()
+    public void ChaseSkill()
     {
-        base.Update();
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            DownSkill();
-        }
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            HelfChaseSkill();
-        }
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            ChaseSkill();
-        }
-        if(Input.GetMouseButtonDown(0))
-        {
-            CloseSkill();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            LineSkill();
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Restore();
-        }
-        if(Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            AttackSelf();
-        }
+        Role.ChaseSkill();
     }
 
-    //Update
-    public override void UpdateUI()
+    public void HelfChaseSkill()
     {
-        PlayerUIManager.UpdateUI(currentHealth, maxHealth);
+        Role.HelfChaseSkill();
     }
 
-    public override void IfDead()
+    public void LineSkill()
     {
-        //UNDO 選擇復活地點 原地復活或回安全區 或是重新遊戲
-        //停止所有動作
-        Debug.Log("玩家死亡");
-
+        Role.LineSkill();
     }
+
+    public void DownSkill()
+    {
+        Role.DownSkill();
+    }
+
+    public void CloseSkill()
+    {
+        Role.CloseSkill();
+    }
+
 }

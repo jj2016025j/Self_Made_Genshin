@@ -17,8 +17,7 @@ public class UIManager : Singleton<UIManager>
     [Header("UI")]
     public MapUIManager MapUIManager;
     public BagUIManager BagUIManager;
-    public PlayerUIManager PlayerUIManager;
-    public BattleUIManager BattleUIManager;
+    public PlayerControllerUIManager PlayerUIManager;
     public SettingUIManager SettingUIManager;
     public PlayerInfomationUIManager PlayerInfomationUIManager;
 
@@ -26,14 +25,7 @@ public class UIManager : Singleton<UIManager>
 
     public GameObject BeginUI, PlayerControllUI, SettingUI, BagUI, MapUI, PlayerInfomationUI, SceneControllUI;
 
-    private void Start()
-    {
-        IntoTheGame();
-        //¸õ¹L¶}©l«ö¶s
-        StartGame();
-    }
-
-    private void IntoTheGame()
+    public void IntoTheGame()
     {
         SettingButton.gameObject.SetActive(false);
         BagButton.gameObject.SetActive(false);
@@ -62,7 +54,7 @@ public class UIManager : Singleton<UIManager>
         PlayerControllUI.SetActive(true);
         SettingUI.SetActive(false);
         BagUI.SetActive(false);
-        MapUI.SetActive(true);
+        MapUI.SetActive(false);
         PlayerInfomationUI.SetActive(true);
         SceneControllUI.SetActive(false);
 

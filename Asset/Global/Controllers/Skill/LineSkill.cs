@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class LineSkill : SkillManager
 {
-    public float speed = 30.0f; // 子彈速度
-    public Rigidbody rb;
-    public Vector3 direction;
+    public ParticleSystem _particleSystem;
 
-    void Update()
+    private void Start()
     {
-        rb.AddForce((direction * speed + transform.up * 10) * Time.deltaTime, ForceMode.Impulse);
+        _particleSystem = GetComponent<ParticleSystem>();
+    }
 
+    private void OnParticleCollision(GameObject other)
+    {
+        print("hit");
+        //是否擊中生物
+        if (other.GetComponent<TheObject>() == selfOrganism)
+        {
+            return;
+        }
+        else if (other.GetComponent<TheObject>() != selfOrganism && other.GetComponent<TheObject>())
+        {
+            selfOrganism.TakeDamage(selfOrganism, targetOrganism);
+            return;
+        }
     }
 }

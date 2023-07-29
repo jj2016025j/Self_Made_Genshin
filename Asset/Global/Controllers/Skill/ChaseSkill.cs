@@ -28,9 +28,9 @@ public class ChaseSkill : SkillManager
         }
         else
         {
-            if (!selfOrganism.FindClosestMonster(selfOrganism.GameManager.MapManager.MonsterManagers).transform)
+            if (!selfOrganism.FindClosestMonster(selfOrganism.GameManager.SceneControll.MapManager.MonsterManagers).transform)
                 return;
-            target = selfOrganism.FindClosestMonster(selfOrganism.GameManager.MapManager.MonsterManagers).transform;
+            target = selfOrganism.FindClosestMonster(selfOrganism.GameManager.SceneControll.MapManager.MonsterManagers).transform;
             //使子弹继续移动
             transform.position += transform.forward * speed * Time.deltaTime;
         }

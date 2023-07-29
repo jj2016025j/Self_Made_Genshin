@@ -12,6 +12,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
             Destroy(gameObject);
         else
             instance=(T)this;
+        
         DontDestroyOnLoad(gameObject);
     }
     public static bool IsInitialized

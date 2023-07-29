@@ -4,47 +4,26 @@ using UnityEngine;
 
 public class DownSkill : SkillManager
 {
-    public float moveSpeed = 3;
-    public Rigidbody rb;
 
-    public Transform target;
-    Vector3 Vector3;
-    public float damage;
+    public ParticleSystem _particleSystem;
 
-    public override void SkillStart()
+    private void Start()
     {
-        Vector3 = new Vector3(Random.Range(-3, 3), -30, Random.Range(-3, 3));
+        _particleSystem = GetComponent<ParticleSystem>();
     }
 
-    public override void SkillDoing()
+    private void OnParticleCollision(GameObject other)
     {
-        if (target != null)
+        print("hit");
+        //是否擊中生物
+        if (other.GetComponent<TheObject>() == selfOrganism)
         {
-            rb.AddForce(moveSpeed * Time.deltaTime * Vector3, ForceMode.Force);
-            if (Vector3.Distance(transform.position, target.position) < 0.5f)
-            {
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
-                foreach (Collider collider in hitColliders)
-                {
-                    //是否擊中生物
-                    if (collider.gameObject.GetComponent<Organism>() == selfOrganism)
-                    {
-                        //UNDO damage
-                        return;
-                    }
-                    else if (collider.gameObject.GetComponent<MonsterManager>() && collider.transform.CompareTag("Player"))
-                    {
-                        targetOrganism = collider.gameObject.GetComponent<MonsterManager>() ? collider.gameObject.GetComponent<MonsterManager>() : targetOrganism;
-                        selfOrganism.TakeDamage(selfOrganism, targetOrganism);
-                        return;
-                    }
-                }
-            }
+            return;
         }
-        else
+        else if (other.GetComponent<TheObject>() != selfOrganism && other.GetComponent<TheObject>())
         {
-            target = selfOrganism.FindClosestMonster(selfOrganism.GameManager.MapManager.MonsterManagers).transform;
+            selfOrganism.TakeDamage(selfOrganism, targetOrganism);
+            return;
         }
     }
-
 }
