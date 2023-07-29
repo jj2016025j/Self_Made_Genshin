@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    //acimator.SetBool("Dead", true);
-    //acimator.SetBool("Life", false);
-    //acimator.SetBool("Dead", false);
-    //acimator.SetBool("Life", true);
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

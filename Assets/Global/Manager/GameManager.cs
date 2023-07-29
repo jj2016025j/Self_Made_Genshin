@@ -5,18 +5,19 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-//Managetion Manager
+//管理所有Manager遊戲流程
 public class GameManager : MonoBehaviour
 {
     public UIManager UIManager;
 
     public MapManager MapManager;
+    public SkillManager SkillManager;
     public PlayerManager PlayerManager;
+    public MonsterManager MonsterManager;
 
     public SceneControll SceneControll;
 
-    //流程控制
-    private void Awake()
+    private void Start()
     {
         Time.timeScale = 0;
     }
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         Time.timeScale = 1;
+        UIManager.StartGame();
     }
 
     public void QuitGame()
@@ -33,6 +35,4 @@ public class GameManager : MonoBehaviour
         EditorApplication.isPlaying = false;
 #endif
     }
-    //鏡頭控制
-    //AI移動
 }

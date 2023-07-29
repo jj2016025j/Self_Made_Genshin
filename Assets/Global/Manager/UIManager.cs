@@ -13,14 +13,13 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameManager GameManager;
-
     [Header("UI")]
-    public MapUIManager MapUIManager;
-    public BagUIManager BagUIManager;
-    public PlayerUIManager PlayerUIManager;
-    public BattleUIManager BattleUIManager;
-    public SettingUIManager SettingUIManager;
-    public PlayerInfomationUIManager PlayerInfomationUIManager;
+    public MapUIManager mapUIManager;
+    public BagUIManager bagUIManager;
+    public PlayerUIManager playerUIManager;
+    public BattleUIManager battleUIManager;
+    public SettingUIManager settingUIManager;
+    public PlayerInfomationUIManager playerInfomationUIManager;
 
     public Button SettingButton, BagButton, MapButton, PlayerInfomationButton, SceneSceneControllButton;
 
@@ -34,8 +33,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         IntoTheGame();
-        //¸õ¹L¶}©l«ö¶s
-        StartGame();
+        //StartGame();
     }
 
     private void IntoTheGame()
@@ -67,11 +65,9 @@ public class UIManager : MonoBehaviour
         PlayerControllUI.SetActive(true);
         SettingUI.SetActive(false);
         BagUI.SetActive(false);
-        MapUI.SetActive(true);
+        MapUI.SetActive(false);
         PlayerInfomationUI.SetActive(true);
         SceneControllUI.SetActive(false);
-
-        GameManager.StartGame();
     }
 
     public void QuitGame()
