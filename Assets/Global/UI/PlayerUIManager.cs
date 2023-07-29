@@ -1,110 +1,67 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using TMPro.Examples;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerUIManager : MonoBehaviour
 {
-    public PlayerManager playerManager;
-    public MapManager MapManager;
-    public GameObject playerUI, AttackButton, RestoreButton,test,test2,test3;//JumpButton;
-    public TextMeshProUGUI currentHealthText;
+    public UIManager UIManager;
 
-    public bool updatePlayerUI;
+    public PlayerManager PlayerManager;
+
+    public TextMeshProUGUI PlayerName, currentHealthText;
+
+    public Image HealthBar;
+    
     //public GameObject joystick;
 
-    //public Text objectTypeText;
-    //public Text objcetNameText;
-    //public Text objectStateText;
-    //public Text maxHealthtext;
-    //public Text currentMaxHealthText;
-    //public Text baseHealthRestoretext;
-    //public Text currentHealthRestoreText;
-    //public Text baseDefencetext;
-    //public Text deadTimeText;
-    //public Text currentDeadTimeText;
-    //public Text currentDefenceText;
-    //public Text baseDamagetext;
-    //public Text currentDamageText;
-    //public Text criticalmultipliertext;
-    //public Text criticalchanceText;
-    
-    private void Awake()
+    //Update
+
+    public void UpdateUI(float currentHealth, float maxHealth)
     {
-        playerManager = GetComponent<PlayerManager>();
-        playerUI = GameObject.Find("PlayerUI");
-        AttackButton = GameObject.Find("AttackButton");
-        RestoreButton = GameObject.Find("RestoreButton");
-
-        test = GameObject.Find("AttackSelf");
-        test3 = GameObject.Find("Test3");
-
-        MapManager = GameObject.Find("GameManager").GetComponent<MapManager>();
-        currentHealthText = GameObject.Find("HealthText").GetComponent<TextMeshProUGUI>();
-
-        AttackButton.GetComponent<Button>().onClick.AddListener(() => Attack());
-        RestoreButton.GetComponent<Button>().onClick.AddListener(() => Restore());
-        test.GetComponent<Button>().onClick.AddListener(() => Test());
-        test3.GetComponent<Button>().onClick.AddListener(() => Test3());
-
-        UpdatePlayerUI(playerManager.currentHealth);
+        currentHealthText.text = currentHealth.ToString("f0");
+        HealthBar.fillAmount = currentHealth / maxHealth;
     }
 
-    private void Test()
+    //Active
+    public void AttackSelf()
     {
-        MapManager.monsterManagers[0].Dead();
-        UpdatePlayerUI(playerManager.currentHealth);
-        Debug.Log("Test");
-    }
-    private void Test2()
-    {
-        MapManager.monsterManagers[0].Dead();
-        UpdatePlayerUI(playerManager.currentHealth);
-        Debug.Log("Test2");
-    }
-    private void Test3()
-    {
-        playerManager.skillManager.SkillAEnd(playerManager, MapManager.monsterManagers[0]);
-        UpdatePlayerUI(playerManager.currentHealth);
-        Debug.Log("Test3");
+        PlayerManager.AttackSelf();
+        Debug.Log("AttackSelf");
     }
 
-    void Update()
+    public void Restore()
     {
-        if (updatePlayerUI)
-        {
-            UpdatePlayerUI(playerManager.currentHealth);
-        }
-    }
-    void UpdatePlayerUI(float currentHealth)
-    {
-        playerManager.UpdatePlayer();
-        currentHealthText.text = currentHealth.ToString();
-    }
-    void Attack()
-    {
-        playerManager.TakeDamageSelf(playerManager);
-        UpdatePlayerUI(playerManager.currentHealth);
-        Debug.Log("Attack");
-    }
-    void Restore()
-    {
-        playerManager.Restore();
-        UpdatePlayerUI(playerManager.currentHealth);
+        PlayerManager.Restore();
         Debug.Log("Restore");
     }
-    /*void Jump()
-    {
-        PlayerManager.Jump();
 
-    }*/
-    void Move()
+    public void ChaseSkill()
     {
-        playerManager.Move();
+        PlayerManager.ChaseSkill();
+        Debug.Log("ChaseSkill");
     }
 
+    public void HelfChaseSkill()
+    {
+        PlayerManager.HelfChaseSkill();
+        Debug.Log("HelfChaseSkill");
+    }
+
+    public void LineSkill()
+    {
+        PlayerManager.LineSkill();
+        Debug.Log("LineSkill");
+    }
+    
+    public void DownSkill()
+    {
+        PlayerManager.DownSkill();
+        Debug.Log("DownSkill");
+    }
+    
+    public void CloseSkill()
+    {
+        PlayerManager.CloseSkill();
+        Debug.Log("CloseSkill");
+    }
 }

@@ -8,10 +8,6 @@ using UnityEngine.UI;
 //紀錄場景地圖
 public class SceneControll : MonoBehaviour
 {
-
-    public string currentScene;
-    public string[] allScene;
-
     //載入圖片場景
     public void Load_ImagePlay_Scene()
     {
@@ -23,7 +19,12 @@ public class SceneControll : MonoBehaviour
     {
         ChangeScene("SampleScene");
     }
-    
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
     //根據輸入載入場景
     private void ChangeScene(string sceneName)
     {

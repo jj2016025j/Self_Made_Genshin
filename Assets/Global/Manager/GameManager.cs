@@ -1,24 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
-//管理所有Manager遊戲流程
+//Managetion Manager
 public class GameManager : MonoBehaviour
 {
-    GameObject UIManager;
-    public PlayerManager playerManager;
+    public UIManager UIManager;
 
-    //退出遊戲
+    public MapManager MapManager;
+    public PlayerManager PlayerManager;
+
+    public SceneControll SceneControll;
+
+    //流程控制
+    private void Awake()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void StartGame()
+    {
+        Time.timeScale = 1;
+    }
+
     public void QuitGame()
     {
         Application.Quit();
+#if UNITY_EDITOR
         EditorApplication.isPlaying = false;
+#endif
     }
-
-    void Start()
-    {
-        UIManager = GameObject.Find("UIManager");
-        playerManager = GetComponent<PlayerManager>();
-    }
+    //鏡頭控制
+    //AI移動
 }

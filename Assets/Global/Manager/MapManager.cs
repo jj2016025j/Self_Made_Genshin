@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,42 +13,26 @@ using static UnityEngine.UI.Image;
 public class MapManager : MonoBehaviour
 {
     [Header("Manager")]
-    public UIManager UIManager;
-    public GameManager gameManager;
-    public PlayerManager playerManager;
-    public List<MonsterManager> monsterManagers;
+    public GameManager GameManager;
+    public MapUIManager MapUIManager;
+    public List<GameObject> MonsterManagers;
 
-    public GameObject UnitUIParent;
-    public GameObject UnitUI;
+    public GameObject Slime, BossSlime, DarkBoss;
 
     //生物數量
     public int StartUnitQuantity=5;
-    public int CurrentUnitQuantity=0;
-    public int UnitQuantityUpperLimit = 10;
+    public int UnitQuantityUpperLimit = 20;
 
     //Other
-    public float InstantiateTime=1;
+    public float InstantiateTime=10;
     public float time=10;
-    public bool isWaiting;
-
-    private void Awake()
-    {
-        UIManager = GetComponent<UIManager>();
-        gameManager = GetComponent<GameManager>();
-        playerManager = GetComponent<PlayerManager>();
-        UnitUIParent = GameObject.Find("OtherUnit");
-        UnitUI = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Unit.prefab");
-    }
+    public bool isWaiting = false;
 
     private void Start()
     {
-        for(int i = 1; i <= StartUnitQuantity; i++)
-        {
-            InstantiateUnit();
-        }
-        JudgeQuantity();
+        StartCoroutine(CoroutineTest());
     }
-    
+
     //Instantiate
     private void Update()
     {
@@ -69,65 +56,67 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    IEnumerator CoroutineTest()
+    {
+        for (int i = 1; i <= StartUnitQuantity; i++)
+        {
+            InstantiateUnit();
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    //Quantity Controll
     void InstantiateUnit()
     {
-        CurrentUnitQuantity++;
-        Debug.Log(CurrentUnitQuantity);
-        //Instantiate(playerManager, new Vector3(0, 0, 0), Quaternion.identity);
-        Instantiate(UnitUI, UnitUIParent.transform, false);
-        //UNDO Create UI
+        JudgeQuantity();
+        GameObject UnitUI = MapUIManager.InstantiateUnitUI();
+        GameObject unit= Instantiate(DarkBoss, new Vector3(Random.Range(-50,50), 0, Random.Range(-50, 50)), Quaternion.identity);
+        unit.GetComponent<MonsterManager>().HealthBar = UnitUI.transform.GetChild(2).GetComponent<Image>();
+        unit.GetComponent<MonsterManager>().UnitName = UnitUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        unit.GetComponent<MonsterManager>().UnitUI = UnitUI;
+        MonsterManagers.Add(unit);
+        Debug.Log("Monster數量:" + MonsterManagers.Count);
     }
 
     //單位死亡
-    public void UnitDead(MonsterManager monsterManager)
+    public void UnitDead(GameObject gameObject, GameObject UnitUI, GameObject UnitUIWorldSpace)
     {
-        CurrentUnitQuantity -= 1;
+        MapUIManager.DestroyUnitUI(UnitUI, UnitUIWorldSpace);
+        MonsterManagers.Remove(gameObject);
+        Destroy(gameObject);
         JudgeQuantity();
-        monsterManagers.Remove(monsterManager);
-        //UNDO Delete UI
     }
 
     //確認剩餘數量
     public void JudgeQuantity()
     {
-        isWaiting = CurrentUnitQuantity < UnitQuantityUpperLimit ? true : false;
+        isWaiting = MonsterManagers.Count < UnitQuantityUpperLimit;
     }
 
-    //Scene
-    public string currentScene;
-    public string[] allScene;
-    public string currentMap;
-    public string targetMap;
-    public string[] allMap = { "Home", "City", "Field" };
 
-    //
-    public void Load_Map(string targetMap)
-    {
 
-    }
 
-    //切換場景
-    public void Load_ImagePlay_Scene()
-    {
-        ChangeScene("ImagePlay");
-    }
 
-    public void Load_SampleScene_Scene()
-    {
-        ChangeScene("SampleScene");
-    }
 
-    //根據輸入載入場景
-    public void ChangeScene(string sceneName)
-    {
-        if (SceneManager.GetActiveScene().name != sceneName)
-        {
-            SceneManager.LoadScene(sceneName);
-        }
-    }
 
-    public void MonsterListAdd(MonsterManager monsterManager)
-    {
-        monsterManagers.Add(monsterManager);
-    }
+
+
+
+
+
+
+
+
+    public List<MonsterManager> MonsterManagers2;
+    public List<MonsterManager> MonsterManagers3;
+    //生物數量
+    public int StartUnitQuantity2 = 2;
+    public int CurrentUnitQuantity2 = 0;
+    public int UnitQuantityUpperLimit2 = 2;
+
+    //生物數量
+    public int StartUnitQuantity3 = 1;
+    public int CurrentUnitQuantity3 = 0;
+    public int UnitQuantityUpperLimit3 = 1;
+
 }
