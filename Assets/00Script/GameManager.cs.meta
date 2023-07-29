@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 44f14decdb408e446a48f0b56b3da099
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - UIManager: {instanceID: 0}
+  - PlayerManager: {instanceID: 0}
+  - SceneManager: {instanceID: 0}
+  - ConnectionManager: {instanceID: 0}
+  - characterPrefab: {instanceID: 0}
+  - spawnPoint: {fileID: 6796787072594210036, guid: 444aaa35da867854b9ac2853f1fbf15b,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
