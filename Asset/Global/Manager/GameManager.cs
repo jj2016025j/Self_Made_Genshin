@@ -6,58 +6,35 @@ using UnityEditor;
 using UnityEngine;
 
 //Managetion Manager
-//控制遊戲進程
-//所有管理員的橋樑
 public class GameManager : Singleton<GameManager>
 {
     public UIManager UIManager;
 
-    public SceneController SceneControll;
+    public SceneControll SceneControll;
+
+    public MapManager MapManager;
     
     public PlayerManager PlayerManager;
 
     public ConnectionManager ConnectionManager;
 
+    //Singleton
+
     public override void Awake()
     {
-        base.Awake();
+        base.Awake();// Dont destroy on reloading the scene
+
         ReadeyToStart();
     }
-
-    private void Update()
-    {
-        //TimeScale Toggle
-        Toggles();
-    }
-
     public void ReadeyToStart()
     {
         Time.timeScale = 0;
-        UIManager.IntoTheGame();
     }
 
     public void StartGame()
     {
         Time.timeScale = 1;
-        UIManager.StartGame();
     }
-
-    private void Toggles()
-    {
-        // Slow time toggle.
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (Time.timeScale != 1) { Time.timeScale = 1; }
-            else { Time.timeScale = 0.125f; }
-        }
-        // Pause toggle.
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (Time.timeScale != 1) { Time.timeScale = 1; }
-            else { Time.timeScale = 0f; }
-        }
-    }
-
 
     public void QuitGame()
     {

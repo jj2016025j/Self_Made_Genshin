@@ -14,7 +14,6 @@ public class MapManager : MonoBehaviour
 {
     [Header("Manager")]
     public GameManager GameManager;
-    public SceneController SceneManager;
     public MapUIManager MapUIManager;
     public List<GameObject> MonsterManagers;
 
@@ -70,14 +69,19 @@ public class MapManager : MonoBehaviour
     void InstantiateUnit()
     {
         JudgeQuantity();
+        GameObject UnitUI = MapUIManager.InstantiateUnitUI();
         GameObject unit= Instantiate(DarkBoss, new Vector3(Random.Range(-200,200), 0, Random.Range(-200, 200)), Quaternion.identity);
+        unit.GetComponent<MonsterManager>().HealthBar = UnitUI.transform.GetChild(2).GetComponent<Image>();
+        unit.GetComponent<MonsterManager>().UnitName = UnitUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        unit.GetComponent<MonsterManager>().UnitUI = UnitUI;
         MonsterManagers.Add(unit);
         Debug.Log("Monster數量:" + MonsterManagers.Count);
     }
 
     //單位死亡
-    public void UnitDead(GameObject gameObject)
+    public void UnitDead(GameObject gameObject, GameObject UnitUI, GameObject UnitUIWorldSpace)
     {
+        MapUIManager.DestroyUnitUI(UnitUI, UnitUIWorldSpace);
         MonsterManagers.Remove(gameObject);
         Destroy(gameObject);
         JudgeQuantity();
@@ -109,8 +113,8 @@ public class MapManager : MonoBehaviour
 
 
 
-    public List<MonstersManager> MonsterManagers2;
-    public List<MonstersManager> MonsterManagers3;
+    public List<MonsterManager> MonsterManagers2;
+    public List<MonsterManager> MonsterManagers3;
     //生物數量
     public int StartUnitQuantity2 = 2;
     public int CurrentUnitQuantity2 = 0;

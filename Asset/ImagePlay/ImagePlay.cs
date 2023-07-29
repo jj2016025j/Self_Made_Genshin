@@ -20,7 +20,7 @@ public class ImagePlay : MonoBehaviour
         sprites = new List<Sprite>();
 
         //從 "ImagePlay" 資料夾中載入所有圖片
-        UnityEngine.Object[] images = Resources.LoadAll("ImagePlay");
+        Object[] images = Resources.LoadAll("ImagePlay");
         Debug.Log(images);
         Debug.Log("I will try");
         foreach (var item in images)
