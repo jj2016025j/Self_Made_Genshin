@@ -1,29 +1,29 @@
 using System;
 using UnityEngine;
 using System.Collections;
-/*
+
 public class CameraManager : MonoBehaviour
 {
-    public InputReader inputReader; // ¿é¤JÅª¨ú¾¹
-    public Camera mainCamera; // ¥D¬Û¾÷
-    public CinemachineFreeLook freeLookVCam; // ¦Û¥Ñ¬Ý¦VªºµêÀÀ¬Û¾÷
-    public CinemachineImpulseSource impulseSource; // ½ÄÀ»·½¡A¥Î©ó¾_°Ê¬Û¾÷
-    private bool _isRMBPressed; // ¥kÁä¬O§_³Q«ö¤U
+    public InputReader inputReader; // ï¿½ï¿½JÅªï¿½ï¿½ï¿½ï¿½
+    public Camera mainCamera; // ï¿½Dï¿½Û¾ï¿½
+    public CinemachineFreeLook freeLookVCam; // ï¿½Û¥Ñ¬Ý¦Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¾ï¿½
+    public CinemachineImpulseSource impulseSource; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Î©ï¿½_ï¿½Ê¬Û¾ï¿½
+    private bool _isRMBPressed; // ï¿½kï¿½ï¿½Oï¿½_ï¿½Qï¿½ï¿½ï¿½U
 
-    [SerializeField][Range(.5f, 3f)] private float _speedMultiplier = 1f; // ¬Û¾÷²¾°Ê³t«×¡A¥i¦b¹CÀ¸³]¸m¤¤­×§ï
-    [SerializeField] private TransformAnchor _cameraTransformAnchor = default; // ¬Û¾÷ÅÜ´«ÁãÂI
-    [SerializeField] private TransformAnchor _protagonistTransformAnchor = default; // ¥D¨¤ÅÜ´«ÁãÂI
+    [SerializeField][Range(.5f, 3f)] private float _speedMultiplier = 1f; // ï¿½Û¾ï¿½ï¿½ï¿½ï¿½Ê³tï¿½×¡Aï¿½iï¿½bï¿½Cï¿½ï¿½ï¿½]ï¿½mï¿½ï¿½ï¿½×§ï¿½
+    [SerializeField] private TransformAnchor _cameraTransformAnchor = default; // ï¿½Û¾ï¿½ï¿½Ü´ï¿½ï¿½ï¿½ï¿½I
+    [SerializeField] private TransformAnchor _protagonistTransformAnchor = default; // ï¿½Dï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½ï¿½I
 
     [Header("Listening on channels")]
     [Tooltip("The CameraManager listens to this event, fired by protagonist GettingHit state, to shake camera")]
-    [SerializeField] private VoidEventChannelSO _camShakeEvent = default; // ¬Û¾÷¾_°Ê¨Æ¥ó
+    [SerializeField] private VoidEventChannelSO _camShakeEvent = default; // ï¿½Û¾ï¿½ï¿½_ï¿½Ê¨Æ¥ï¿½
 
-    private bool _cameraMovementLock = false; // ¬Û¾÷²¾°ÊÂê
+    private bool _cameraMovementLock = false; // ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     private void OnEnable()
     {
-        Debug.Log("Camera Manager Enabled"); // ´£¥Ü¬Û¾÷ºÞ²z¾¹¤w±Ò¥Î
-        // ²K¥[¨Æ¥óºÊÅ¥
+        Debug.Log("Camera Manager Enabled"); // ï¿½ï¿½ï¿½Ü¬Û¾ï¿½ï¿½Þ²zï¿½ï¿½ï¿½wï¿½Ò¥ï¿½
+        // ï¿½Kï¿½[ï¿½Æ¥ï¿½ï¿½Å¥
         inputReader.CameraMoveEvent += OnCameraMove;
         inputReader.EnableMouseControlCameraEvent += OnEnableMouseControlCamera;
         inputReader.DisableMouseControlCameraEvent += OnDisableMouseControlCamera;
@@ -36,8 +36,8 @@ public class CameraManager : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("Camera Manager Disabled"); // ´£¥Ü¬Û¾÷ºÞ²z¾¹¤w¸T¥Î
-        // ²¾°£¨Æ¥óºÊÅ¥
+        Debug.Log("Camera Manager Disabled"); // ï¿½ï¿½ï¿½Ü¬Û¾ï¿½ï¿½Þ²zï¿½ï¿½ï¿½wï¿½Tï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½Å¥
         inputReader.CameraMoveEvent -= OnCameraMove;
         inputReader.EnableMouseControlCameraEvent -= OnEnableMouseControlCamera;
         inputReader.DisableMouseControlCameraEvent -= OnDisableMouseControlCamera;
@@ -50,8 +50,8 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Camera Manager Start"); // ´£¥Ü¬Û¾÷ºÞ²z¾¹±Ò°Ê
-        // ¦pªG¥D¨¤¤w¸g¥i¥Î¡A«h³]¸m¬Û¾÷¥Ø¼Ð
+        Debug.Log("Camera Manager Start"); // ï¿½ï¿½ï¿½Ü¬Û¾ï¿½ï¿½Þ²zï¿½ï¿½ï¿½Ò°ï¿½
+        // ï¿½pï¿½Gï¿½Dï¿½ï¿½ï¿½wï¿½gï¿½iï¿½Î¡Aï¿½hï¿½]ï¿½mï¿½Û¾ï¿½ï¿½Ø¼ï¿½
         if (_protagonistTransformAnchor.isSet)
             SetupProtagonistVirtualCamera();
     }
@@ -66,10 +66,10 @@ public class CameraManager : MonoBehaviour
         StartCoroutine(DisableMouseControlForFrame());
     }
 
-    // ¼È®É¸T¥Î¹«¼Ð±±¨î¡AÁ×§K²Ä¤@´V®É¾É­P¬Û¾÷²¾°Ê
+    // ï¿½È®É¸Tï¿½Î¹ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Aï¿½×§Kï¿½Ä¤@ï¿½Vï¿½É¾É­Pï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½
     IEnumerator DisableMouseControlForFrame()
     {
-        Debug.Log("Disable Mouse Control For Frame"); // ´£¥Ü¼È®É¸T¥Î¹«¼Ð±±¨î
+        Debug.Log("Disable Mouse Control For Frame"); // ï¿½ï¿½ï¿½Ü¼È®É¸Tï¿½Î¹ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
         _cameraMovementLock = true;
         yield return new WaitForEndOfFrame();
         _cameraMovementLock = false;
@@ -77,40 +77,40 @@ public class CameraManager : MonoBehaviour
 
     private void OnDisableMouseControlCamera()
     {
-        Debug.Log("Mouse Control Disabled"); // ´£¥Ü¹«¼Ð±±¨î³Q¸T¥Î
+        Debug.Log("Mouse Control Disabled"); // ï¿½ï¿½ï¿½Ü¹ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Qï¿½Tï¿½ï¿½
         _isRMBPressed = false;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // ·í¹«¼Ð±±¨î³Q¸T¥Î®É¡A»Ý­n²MªÅ¿é¤J
-        // §_«h³Ì«á¤@´Vªº¿é¤J·|'ÂH¦í'¡Aª½¨ì¤U¦¸°Ê§@³Q½Õ¥Î
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Qï¿½Tï¿½Î®É¡Aï¿½Ý­nï¿½Mï¿½Å¿ï¿½J
+        // ï¿½_ï¿½hï¿½Ì«ï¿½@ï¿½Vï¿½ï¿½ï¿½ï¿½Jï¿½|'ï¿½Hï¿½ï¿½'ï¿½Aï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½Ê§@ï¿½Qï¿½Õ¥ï¿½
         freeLookVCam.m_XAxis.m_InputAxisValue = 0;
         freeLookVCam.m_YAxis.m_InputAxisValue = 0;
     }
 
     private void OnCameraMove(Vector2 cameraMovement, bool isDeviceMouse)
     {
-        Debug.Log("Camera Movement"); // ´£¥Ü¬Û¾÷²¾°Ê
+        Debug.Log("Camera Movement"); // ï¿½ï¿½ï¿½Ü¬Û¾ï¿½ï¿½ï¿½ï¿½ï¿½
         if (_cameraMovementLock)
             return;
 
         if (isDeviceMouse && !_isRMBPressed)
             return;
 
-        // ¦pªG³]³Æ¬O¹«¼Ð¡A«h¨Ï¥Î"©T©wªº delta time"¡A
-        // ¦]¬°¹ï©ó¹«¼Ð¡A§Ú­Ì¤£»Ý­n¦Ò¼{´V«ùÄò®É¶¡
+        // ï¿½pï¿½Gï¿½]ï¿½Æ¬Oï¿½ï¿½ï¿½Ð¡Aï¿½hï¿½Ï¥ï¿½"ï¿½Tï¿½wï¿½ï¿½ delta time"ï¿½A
+        // ï¿½]ï¿½ï¿½ï¿½ï¿½ó¹«¼Ð¡Aï¿½Ú­Ì¤ï¿½ï¿½Ý­nï¿½Ò¼{ï¿½Vï¿½ï¿½ï¿½ï¿½É¶ï¿½
         float deviceMultiplier = isDeviceMouse ? 0.02f : Time.deltaTime;
 
         freeLookVCam.m_XAxis.m_InputAxisValue = cameraMovement.x * deviceMultiplier * _speedMultiplier;
         freeLookVCam.m_YAxis.m_InputAxisValue = cameraMovement.y * deviceMultiplier * _speedMultiplier;
     }
 
-    // ´£¨ÑCinemachine¥Ø¼Ð¡A±q¥]§t¹ïª±®aTransform²Õ¥óªº¤Þ¥ÎªºTransformAnchor SOÀò¨ú
-    // ¨C¦¸ª±®a­«·s¹ê¨Ò¤Æ®É¡A³£·|½Õ¥Î¦¹¤èªk
+    // ï¿½ï¿½ï¿½ï¿½Cinemachineï¿½Ø¼Ð¡Aï¿½qï¿½]ï¿½tï¿½ïª±ï¿½aTransformï¿½Õ¥óªº¤Þ¥Îªï¿½TransformAnchor SOï¿½ï¿½ï¿½
+    // ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½aï¿½ï¿½ï¿½sï¿½ï¿½Ò¤Æ®É¡Aï¿½ï¿½ï¿½|ï¿½Õ¥Î¦ï¿½ï¿½ï¿½k
     public void SetupProtagonistVirtualCamera()
     {
-        Debug.Log("Setup Protagonist Virtual Camera"); // ´£¥Ü³]¸m¥D¨¤µêÀÀ¬Û¾÷
+        Debug.Log("Setup Protagonist Virtual Camera"); // ï¿½ï¿½ï¿½Ü³]ï¿½mï¿½Dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¾ï¿½
         Transform target = _protagonistTransformAnchor.Value;
 
         freeLookVCam.Follow = target;
@@ -121,10 +121,10 @@ public class CameraManager : MonoBehaviour
 
 public class CameraManager2 : MonoBehaviour
 {
-    // ª½±µ°Ñ¦Ò¥D¨¤ª«¥ó
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¦Ò¥Dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public GameObject protagonist;
 
-    // ¨Ï¥Î Unity ´£¨Ñªº¨Æ¥óÃþ«¬¡A³o¥i¯à»Ý­n¨ä¥L¸}¥»Ä²µo³o¨Ç¨Æ¥ó
+    // ï¿½Ï¥ï¿½ Unity ï¿½ï¿½ï¿½Ñªï¿½ï¿½Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½oï¿½iï¿½ï¿½Ý­nï¿½ï¿½Lï¿½}ï¿½ï¿½Ä²ï¿½oï¿½oï¿½Ç¨Æ¥ï¿½
     public event Action<Vector2, bool> CameraMoveEvent;
     public event Action EnableMouseControlCameraEvent;
     public event Action DisableMouseControlCameraEvent;
@@ -156,7 +156,7 @@ public class CameraManager2 : MonoBehaviour
 
     private void Start()
     {
-        // ¨Ï¥Îª½±µ°Ñ¦Òªº¥D¨¤ª«¥ó³]©w¬Û¾÷¥Ø¼Ð
+        // ï¿½Ï¥Îªï¿½ï¿½ï¿½ï¿½Ñ¦Òªï¿½ï¿½Dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½wï¿½Û¾ï¿½ï¿½Ø¼ï¿½
         SetupProtagonistVirtualCamera();
     }
 
@@ -203,4 +203,3 @@ public class CameraManager2 : MonoBehaviour
         freeLookVCam.OnTargetObjectWarped(target, target.position - freeLookVCam.transform.position - Vector3.forward);
     }
 }
-*/

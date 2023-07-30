@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             Debug.Log("遊戲準備開始");
-            ReadyToStart();
+            PauseGame();
         }
     }
 
@@ -70,7 +70,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void ReadyToStart()
+    public void PauseGame()
     {
         // 遊戲準備開始，時間縮放設為 0
         Time.timeScale = 0;

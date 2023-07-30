@@ -18,7 +18,7 @@ public class MySceneManager : Singleton<MySceneManager>
     private void Start()
     {
         monsterManager = GameObject.FindObjectOfType<CrowdManagement>();
-        spawnPoint = transform;
+        spawnPoint = transform;//預設
 
         // 確保找到了這些腳本
         Debug.Assert(monsterManager != null, "未找到 MonsterManager 腳本");

@@ -5,68 +5,57 @@ using UnityEngine;
 
 public class RoleData : EntityData
 {
-    //¶}©l®Éªì©l¤Æ¼Æ­È
+    //ï¿½}ï¿½lï¿½Éªï¿½lï¿½Æ¼Æ­ï¿½
     public override void Start()
     {
         Initialize();
     }
 
-    //ªì©l¤Æ¼Æ­È
+    //ï¿½ï¿½lï¿½Æ¼Æ­ï¿½
     public override void Initialize()
     {
         base.Initialize();
-        //¦å¶q
+        //ï¿½ï¿½q
         maxHealth = 100;
         currentMaxHealth = 100;
         currentHealth = 100;
-        //¦^´_
+        //ï¿½^ï¿½_
         baseHealthRestore = 1;
         currentHealthRestore = 1;
-        //¨¾¿m
+        //ï¿½ï¿½ï¿½m
         baseDefense = 10;
         currentDefense = 10;
         deadTime = 15;
         currentDeadTime = 0;
 
-        //§ðÀ»
+        //ï¿½ï¿½ï¿½ï¿½
         baseDamage = 10;
         currentDamage = 10;
 
-        //¨ä¥L
+        //ï¿½ï¿½L
         attackRange = 10;
-        criticalMultiplier = 50;//ÃzÀ»¥[¦¨
-        criticalChance = 10;//ÃzÀ»¾÷²v
+        criticalMultiplier = 50;//ï¿½zï¿½ï¿½ï¿½[ï¿½ï¿½
+        criticalChance = 10;//ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½v
 
         variable = 1;//Balance
     }
 
-    //½T«O¥Í©R­È¦b¤@©w½d³ò¤º
+//UNDO
+    //ï¿½Tï¿½Oï¿½Í©Rï¿½È¦bï¿½@ï¿½wï¿½dï¿½ï¿½
     public override void MakeSureHealth()
     {
         base.MakeSureHealth();
         if (currentHealth <= 0.5f)
         {
             currentDeadTime = deadTime;
-            Debug.Log("·í«e¥Í©R­È¹L§C¡A»Ý­n±Ä¨ú±¹¬I¡C");
+            Debug.Log("ï¿½ï¿½ï¿½eï¿½Í©Rï¿½È¹Lï¿½Cï¿½Aï¿½Ý­nï¿½Ä¨ï¿½ï¿½ï¿½ï¿½Iï¿½C");
         }
     }
 
     public void Dead()
     {
-        //UNDO ¿ï¾Ü´_¬¡¦aÂI ­ì¦a´_¬¡©Î¦^¦w¥þ°Ï ©Î¬O­«·s¹CÀ¸
-        //°±¤î©Ò¦³°Ê§@
-        Debug.Log("ª±®a¦º¤`");
+        //UNDO ï¿½ï¿½Ü´_ï¿½ï¿½ï¿½aï¿½I ï¿½ï¿½aï¿½_ï¿½ï¿½ï¿½Î¦^ï¿½wï¿½ï¿½ï¿½ï¿½ ï¿½Î¬Oï¿½ï¿½ï¿½sï¿½Cï¿½ï¿½
+        //ï¿½ï¿½ï¿½ï¿½Ò¦ï¿½ï¿½Ê§@
+        Debug.Log("ï¿½ï¿½ï¿½aï¿½ï¿½ï¿½`");
     }
-
-    public void UpdateDeadTime()//­pºâ¦º¤`®É¶¡
-    {
-        currentDeadTime -= Time.deltaTime;
-        if (currentDeadTime <= 0)
-        {
-            objectState = ObjectState.Guard;
-            currentHealth = maxHealth;
-            currentDeadTime = deadTime;
-        }
-    }
-
 }
