@@ -35,7 +35,7 @@ public class AIControl : MonoBehaviour
     private bool mIsDead = false;
 
     [Header("Info")]
-    public UnityEngine.GameObject[] Item = null;
+    public GameObject[] Item = null;
 
     //追蹤AI是否移動
     private bool IsNavMeshMoving
@@ -228,9 +228,6 @@ public class AIControl : MonoBehaviour
         // 让怪物向巡逻点移动
         agent.SetDestination(wanderPoint);
     }
-    建議我控制功能用繼承的方式還是各寫一個還是有甚麼建議的方法?
-    像是不同的怪物
-    AI控制還是玩家手動等等
 */
     // 获取一个随机的巡逻点
     public Vector3 RandomWanderPoint()

@@ -12,7 +12,7 @@ public class EntityManager : MonoBehaviour
     //mapPosition
     //do data
     //do input
-    //do move
+    //do velocity
 
     public GameManager GameManager; // 遊戲管理器
     public EntityData objectData; // 物件的數據

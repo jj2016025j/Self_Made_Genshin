@@ -9,13 +9,13 @@ public class LineSkill : SkillManager
     {
         print("hit");
         //是否擊中生物
-        if (other.GetComponent<EntityData>() == selfOrganism)
+        if (other.GetComponent<EntityData>() == selfEntity)
         {
             return;
         }
-        else if (other.GetComponent<EntityData>() != selfOrganism && other.GetComponent<EntityData>())
+        else if (other.GetComponent<EntityData>() != selfEntity && other.GetComponent<EntityData>())
         {
-            selfOrganism.DamageSkill(selfOrganism, targetOrganism);
+            selfEntity.DamageSkill(selfEntity, targetEntity);
             return;
         }
     }

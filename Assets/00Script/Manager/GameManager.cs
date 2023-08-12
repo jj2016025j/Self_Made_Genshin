@@ -100,7 +100,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            ReadyToStart();
+            PauseGame();
         }
     }
 

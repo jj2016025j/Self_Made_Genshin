@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 19711835}
   - component: {fileID: 19711834}
   m_Layer: 0
-  m_Name: Main Camera (1)
+  m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -494,7 +494,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &28257280
 GameObject:
@@ -1437,6 +1437,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163527885}
   m_CullTransparentMesh: 1
+--- !u!1001 &180222355
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.6303768
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.9047794
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273894457300933899, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4780618812021640756, guid: c4c7bc15da9965441a8523f639e7c691,
+        type: 3}
+      propertyPath: m_Name
+      value: Slime
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4c7bc15da9965441a8523f639e7c691, type: 3}
 --- !u!1 &205032177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,7 +2714,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &472586688
 GameObject:
@@ -2707,15 +2776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c44d35a8023404f952060edc00db40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIManager: {fileID: 1848118950}
-  PlayerManager: {fileID: 0}
-  AttackSelfButton: {fileID: 1524803759}
-  RestoreButton: {fileID: 2117525316}
-  ChaseSkillButton: {fileID: 1587896631}
-  HelfChaseSkillButton: {fileID: 1002453738}
-  LineSkillButton: {fileID: 878781468}
-  DownSkillButton: {fileID: 807290274}
-  CloseSkillButton: {fileID: 1050397957}
 --- !u!1 &480214634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3712,7 +3772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc807648cd663624ca4d5f1477d5fdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerControllerUIManager: {fileID: 472586690}
   Image: {fileID: 840541622}
   time: {fileID: 929328836}
   SkillEnable: 1
@@ -4455,7 +4514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc807648cd663624ca4d5f1477d5fdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerControllerUIManager: {fileID: 472586690}
   Image: {fileID: 387023478}
   time: {fileID: 1678247797}
   SkillEnable: 1
@@ -4668,6 +4726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b6dfa3aaf869f4ab3aee7c35765af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   destinationScene: 1
 --- !u!65 &905714853
 BoxCollider:
@@ -4745,7 +4804,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &929328834
 GameObject:
@@ -5191,7 +5250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc807648cd663624ca4d5f1477d5fdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerControllerUIManager: {fileID: 472586690}
   Image: {fileID: 1149965258}
   time: {fileID: 1343059319}
   SkillEnable: 1
@@ -5320,15 +5378,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f14decdb408e446a48f0b56b3da099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIManager: {fileID: 1848118950}
-  PlayerManager: {fileID: 0}
-  SceneManager: {fileID: 1011763710}
-  ConnectionManager: {fileID: 0}
-  characterPrefab: {fileID: 6796787072594210041, guid: 444aaa35da867854b9ac2853f1fbf15b,
-    type: 3}
-  spawnPoint: {fileID: 1011763711}
+  uiManager: {fileID: 0}
+  playerManager: {fileID: 0}
+  mySceneManager: {fileID: 0}
+  monsterManager: {fileID: 0}
+  connectionManager: {fileID: 0}
   State: 2
-  FirstGame: 0
 --- !u!114 &1011763710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5341,11 +5396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abdfc3924d96bd7429c2a8546132469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slime: {fileID: 6796787072594210041, guid: 444aaa35da867854b9ac2853f1fbf15b, type: 3}
-  Monsters: []
-  StartUnitQuantity: 5
-  UnitQuantityUpperLimit: 20
-  InstantiateTime: 10
+  characterPrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  monsterManager: {fileID: 0}
 --- !u!4 &1011763711
 Transform:
   m_ObjectHideFlags: 0
@@ -5359,7 +5412,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1033153161
 GameObject:
@@ -5474,7 +5527,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1033153978
 GameObject:
@@ -5761,7 +5814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc807648cd663624ca4d5f1477d5fdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerControllerUIManager: {fileID: 472586690}
   Image: {fileID: 1150866342}
   time: {fileID: 261184833}
   SkillEnable: 1
@@ -6734,6 +6786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b6dfa3aaf869f4ab3aee7c35765af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   destinationScene: 2
 --- !u!65 &1169751109
 BoxCollider:
@@ -6811,7 +6864,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1204161321
 GameObject:
@@ -7570,6 +7623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b6dfa3aaf869f4ab3aee7c35765af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   destinationScene: 0
 --- !u!65 &1310508362
 BoxCollider:
@@ -8184,7 +8238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc807648cd663624ca4d5f1477d5fdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerControllerUIManager: {fileID: 0}
   Image: {fileID: 1078655360}
   time: {fileID: 1128953196}
   SkillEnable: 1
@@ -8725,7 +8778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc807648cd663624ca4d5f1477d5fdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerControllerUIManager: {fileID: 472586690}
   Image: {fileID: 1110196205}
   time: {fileID: 2041666423}
   SkillEnable: 1
@@ -9768,7 +9820,6 @@ MonoBehaviour:
   GameManager: {fileID: 1011763709}
   MapUIManager: {fileID: 1971056853}
   BagUIManager: {fileID: 358654122}
-  PlayerUIManager: {fileID: 472586690}
   SettingUIManager: {fileID: 1033153982}
   PlayerInfomationUIManager: {fileID: 763558927}
   SettingButton: {fileID: 480214635}
@@ -9869,7 +9920,7 @@ RectTransform:
   - {fileID: 883437181}
   - {fileID: 308719742}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10284,11 +10335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abdfc3924d96bd7429c2a8546132469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slime: {fileID: 4780618812021640756, guid: c4c7bc15da9965441a8523f639e7c691, type: 3}
-  Monsters: []
-  StartUnitQuantity: 5
-  UnitQuantityUpperLimit: 10
-  InstantiateTime: 10
+  characterPrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  monsterManager: {fileID: 0}
 --- !u!222 &1971056851
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10338,6 +10387,7 @@ MonoBehaviour:
   City: {fileID: 1302576130}
   Field: {fileID: 18385007}
   currentMapText: {fileID: 0}
+  mapPositions: []
 --- !u!1 &1977721535
 GameObject:
   m_ObjectHideFlags: 0
@@ -10594,6 +10644,88 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018569418}
   m_CullTransparentMesh: 1
+--- !u!1 &2037062287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4780618812021640756, guid: c4c7bc15da9965441a8523f639e7c691,
+    type: 3}
+  m_PrefabInstance: {fileID: 180222355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2037062294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037062287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3abe6eaa3c654794295f4477d1b52574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  cam: {fileID: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  speed: 5
+  gravity: -9.81
+  jumpHeight: 3
+  groundDistance: 0.4
+  climbingDistance: 0.7
+  tureSmoothTime: 0.1
+  velocity: {x: 0, y: 0, z: 0}
+  isGrounded: 0
+  isclimbing: 0
+  tureSmoothvelocity: 0
+--- !u!114 &2037062295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037062287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 19711836}
+--- !u!143 &2037062296
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037062287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2041666421
 GameObject:
   m_ObjectHideFlags: 0
@@ -10859,7 +10991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc807648cd663624ca4d5f1477d5fdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerControllerUIManager: {fileID: 472586690}
   Image: {fileID: 1697637299}
   time: {fileID: 1102595948}
   SkillEnable: 1

@@ -11,7 +11,7 @@ public class HelfChaseSkill : SkillManager
 
     private void Start()
     {
-        target = targetOrganism.transform;
+        target = targetEntity.transform;
     }
 
     /*
@@ -31,9 +31,9 @@ public class HelfChaseSkill : SkillManager
         }
         else
         {
-            if (!selfOrganism.FindClosestMonster(selfOrganism.GameManager.SceneManager.Monsters).transform)
+            if (!selfEntity.FindClosestMonster(selfEntity.GameManager.SceneManager.Monsters).transform)
                 return;
-            target = selfOrganism.FindClosestMonster(selfOrganism.GameManager.SceneManager.Monsters).transform;
+            target = selfEntity.FindClosestMonster(selfEntity.GameManager.SceneManager.Monsters).transform;
             //使子弹继续移动
             transform.position += transform.forward * speed * Time.deltaTime;
         }

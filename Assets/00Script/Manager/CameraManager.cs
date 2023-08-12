@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
-
+/*
 public class CameraManager : MonoBehaviour
 {
     public InputReader inputReader; // ��JŪ����
@@ -203,3 +203,4 @@ public class CameraManager2 : MonoBehaviour
         freeLookVCam.OnTargetObjectWarped(target, target.position - freeLookVCam.transform.position - Vector3.forward);
     }
 }
+*/

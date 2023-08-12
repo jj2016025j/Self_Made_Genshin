@@ -19,8 +19,8 @@ public class SkillManager : MonoBehaviour
     public DownSkill downSkill;
     public CloseSkill closeSkill;
     
-    public OrganismData selfOrganism;
-    public OrganismData targetOrganism;
+    public EntityData selfEntity;
+    public EntityData targetEntity;
     public bool SkillIsWorking = true;
 
     private void OnParticleCollision(UnityEngine.GameObject other)
@@ -33,7 +33,7 @@ public class SkillManager : MonoBehaviour
         Destroy(gameObject,10);
         SkillIsWorking = true;
         SkillStart();
-        //transform.localScale= selfOrganism.transform.localScale;
+        //transform.localScale= selfEntity.transform.localScale;
     }
 
     private void FixedUpdate()
@@ -56,16 +56,16 @@ public class SkillManager : MonoBehaviour
     public virtual void SkillEnd(Collision collision)
     {
         //是否擊中生物
-        if (collision.gameObject.GetComponent<OrganismData>() == selfOrganism)
+        if (collision.gameObject.GetComponent<EntityData>() == selfEntity)
         {
 
             return;
         }
-        else if(collision.gameObject.GetComponent<OrganismData>() && collision.transform.CompareTag("Player"))
+        else if(collision.gameObject.GetComponent<EntityData>() && collision.transform.CompareTag("Player"))
         {
 
-            targetOrganism = collision.gameObject.GetComponent<OrganismData>() ? collision.gameObject.GetComponent<OrganismData>() : targetOrganism;
-            selfOrganism.DamageSkill(selfOrganism, targetOrganism);
+            targetEntity = collision.gameObject.GetComponent<EntityData>() ? collision.gameObject.GetComponent<EntityData>() : targetEntity;
+            selfEntity.DamageSkill(selfEntity, targetEntity);
             Destroy(gameObject);
             return;
         }
