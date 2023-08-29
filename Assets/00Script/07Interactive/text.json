@@ -1,0 +1,37 @@
+{
+    "Entries": [
+        {
+            "NPCName": "農夫",
+            "DialogueText": "最近的天氣真不錯，作物生長得很好。",
+            "Responses": [
+                {
+                    "PlayerText": "是啊，真是一段好時光。",
+                    "NextDialogueEntry": 1
+                },
+                {
+                    "PlayerText": "我想購買一些作物。",
+                    "NextDialogueEntry": 2
+                },
+                {
+                    "PlayerText": "再見。",
+                    "NextDialogueEntry": -1
+                }
+            ]
+        },
+        {
+            "NPCName": "農夫",
+            "DialogueText": "謝謝您，希望您有美好的一天。",
+            "Responses": []
+        },
+        {
+            "NPCName": "農夫",
+            "DialogueText": "當然可以，這是我所有的作物。",
+            "Responses": [
+                {
+                    "PlayerText": "謝謝，我會看看的。",
+                    "NextDialogueEntry": -1
+                }
+            ]
+        }
+    ]
+}
